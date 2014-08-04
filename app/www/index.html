@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>cute</title>
+
+    <!-- css -->
+    <link href="css/list.css" rel="stylesheet">
+    <link href="css/login.css" rel="stylesheet">
+    <link href="css/match.css" rel="stylesheet">
+
+    <!-- vendor scripts -->
+    <script src="js/vendor/ionic.bundle.min.js"></script>
+    <script src="js/vendor/angular-resource.min.js"></script>
+    <script src="js/vendor/MobileServices.Web-1.1.3.min.js"></script>
+    <script src="js/vendor/PushNotification.js"></script>
+    <script src="js/vendor/NotificationHub.js"></script>
+    <script src="js/vendor/openfb.js"></script>
+    <script src="js/vendor/jquery-2.1.1.min.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- glue -->
+    <script src="js/routes.js"></script>
+    <script src="js/exceptionHandler.js"></script>
+
+    <!-- services-->
+    <script src="js/services/module.js"></script>
+    <script src="js/services/CheckinService.js"></script>
+    <script src="js/services/Constants.js"></script>
+    <script src="js/services/Secrets.js"></script>
+    <script src="js/services/FacebookService.js"></script>
+    <script src="js/services/FriendService.js"></script>
+    <script src="js/services/HeartService.js"></script>
+    <script src="js/services/LocalStorageService.js"></script>
+    <script src="js/services/MobileServiceClientService.js"></script>
+    <script src="js/services/PushNotificationService.js"></script>
+      
+    <!-- controllers -->
+    <script src="js/controllers/module.js" ></script>
+    <script src="js/controllers/InitController.js"></script>
+    <script src="js/controllers/NotificationController.js"></script>
+    <script src="js/controllers/LoginController.js"></script>
+    <script src="js/controllers/ListController.js"></script>
+    <script src="js/controllers/MatchController.js"></script>
+  </head>
+
+  <body ng-app="cute" ng-controller="mainController">
+    <ion-nav-view></ion-nav-view>
+  </body>
+</html>

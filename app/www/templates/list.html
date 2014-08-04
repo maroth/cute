@@ -1,0 +1,18 @@
+<!-- 
+  This template gets placed in the Pet tab's <ion-nav-view> directive.
+  It was wired up in the app config (app.js) 
+  The 'pets' data comes from its $scope within PetIndexCtrl (controller.js)
+-->
+<ion-view title="list">
+  <ion-content padding="false" scroll="true">
+      <div class="list-item" ng-repeat="friend in friends" type="item-text-wrap" ng-click="createHeart(friend.id)">
+        <p class="list-left">
+          <img class="list-image" ng-src="{{ friend.pictureUrl }}" />
+          <span class="list-name">{{friend.name}}</span>
+        </p>
+        <span class="list-heart" ng-show="friend.heartState == 'active'">&hearts;</span>
+        <span class="list-status" ng-show="friend.heartState == 'pending'">&hearts;</span>
+        <span class="list-status" ng-show="friend.heartState == 'failed'">:-(</span>
+      </div>
+  </ion-content>
+</ion-view>

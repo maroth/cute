@@ -1,0 +1,10 @@
+*.keystore
+*.sw*
+platforms/^.*
+*.sln
+*.csproj
+*.apk
+*.suo
+bin
+obj
+*.user

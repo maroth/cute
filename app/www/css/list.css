@@ -1,0 +1,55 @@
+@-webkit-keyframes pulse-list {
+  from {
+    font-size: 250%;
+  }
+  to {
+    font-size: 300%;
+  }
+}
+
+.list-heart {
+  line-height: 80px;
+  color: red;
+  vertical-align: middle;
+  display: inline-block;
+  width: 25%;
+  text-align: center;
+  -webkit-animation-name: pulse-list;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in-out;
+  -webkit-animation-direction: alternate;
+  -webkit-animation-duration: 0.75s;
+}
+
+.list-status {
+  line-height: 80px;
+  color: lightgrey;
+  vertical-align: middle;
+  display: inline-block;
+  width: 25%;
+  text-align: center;
+}
+
+.list-image {
+  vertical-align: middle;
+  border-radius: 7px;
+}
+
+.list-name {
+  margin-left: 15px;
+  font-family: 'HelveticaNeue','Helvetica Neue',Helvetica,Arial,Sans-Serif;
+}
+
+.list-item {
+  margin-left: 11px;
+  width: 100%;
+  font-size: 120%;
+  vertical-align: middle;
+  line-height: 80px;
+}
+
+.list-left {
+  display: inline-block;
+  width: 65%;
+  margin-left: 5px;
+}

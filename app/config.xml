@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget xmlns:cdv="http://cordova.apache.org/ns/1.0"
+    id="cute.cute"
+    version="1.0.2"
+    xmlns="http://www.w3.org/ns/widgets" >
+
+    <name>
+cute
+    </name>
+
+    <description>
+        be cute to each other at the same time!
+    </description>
+
+    <author
+        email="maroth@gmail.com"
+        href="http://markusroth.info" >
+        Markus Roth
+    </author>
+
+    <content src="index.html" />
+
+    <access origin="*" />
+
+    <preference
+        name="fullscreen"
+        value="true" />
+
+    <preference
+        name="Orientation"
+        value="Portrait" />
+
+    <preference
+        name="webviewbounce"
+        value="false" />
+
+    <preference
+        name="UIWebViewBounce"
+        value="false" />
+
+    <preference
+        name="DisallowOverscroll"
+        value="true" />
+
+    <access origin="*" />
+
+    <preference
+        name="SplashScreen"
+        value="splash" />
+
+    <preference
+        name="SplashScreenDelay"
+        value="10000" />
+
+    <platform name="android" >
+
+        <icon
+            density="ldpi"
+            src="www/res/icon/android/icon-36-ldpi.png" />
+
+        <icon
+            density="mdpi"
+            src="www/res/icon/android/icon-48-mdpi.png" />
+
+        <icon
+            density="hdpi"
+            src="www/res/icon/android/icon-72-hdpi.png" />
+
+        <icon
+            density="xhdpi"
+            src="www/res/icon/android/icon-96-xhdpi.png" />
+    </platform>
+
+</widget>
