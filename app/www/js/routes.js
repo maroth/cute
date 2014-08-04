@@ -1,10 +1,5 @@
 angular.module('cute', ['ionic', 'cute.services', 'cute.controllers', 'cute.exceptionHandler'])
 
-.config(['$httpProvider', function($httpProvider) { 
-  $httpProvider.defaults.headers.common['X-ZUMO-APPLICATION'] = 'jGASrSNilTcgVpFipWXJgRxPmtsRCF47';
-  $httpProvider.defaults.headers.common['Content-Type'] = 'Application/json';
-}])
-
 .config(function($stateProvider, $urlRouterProvider) {
 
   $stateProvider
@@ -29,6 +24,7 @@ angular.module('cute', ['ionic', 'cute.services', 'cute.controllers', 'cute.exce
 
     .state('init', {
       url: '/init',
+      templateUrl: 'templates/init.html',
       controller: 'initController',
     });
 

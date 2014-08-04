@@ -7,11 +7,10 @@
 
     var getFriendsUsingCute = function() {
       var deferred = $q.defer();
-      var friends = [];
 
       var apiCallSuccess = function(result) {
         var friends = JSON.parse(result.response).friends;
-        angular.forEach(friends, function(value, key) {
+        angular.forEach(friends, function(value) {
           value.heartState = 'none';
         });
         deferred.resolve(friends);

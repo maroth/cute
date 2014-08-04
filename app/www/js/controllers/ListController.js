@@ -54,7 +54,7 @@
 
       friendInList.heartState = 'pending';
 
-      var myFacebookId = FacebookService.getOwnId().then(function(myFacebookId) {
+      FacebookService.getOwnId().then(function (myFacebookId) {
         var heart = {
           from: myFacebookId,
           to: targetFacebookId,

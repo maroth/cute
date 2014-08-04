@@ -1,12 +1,11 @@
 angular.module('cute.controllers')
-    .controller('initController', function($state, FacebookService) {
-        document.addEventListener('deviceready', function() {
-            FacebookService.getTokenState().then(function(tokenState) {
-                if (tokenState == 'no valid token') {
-                    $state.go('login');
-                } else {
-                    $state.go('list');
-                }
-            });
-        }, false);
+    .controller('initController', function ($state, Constants, LocalStorageService) {
+      document.addEventListener('deviceready', function () {
+        var initializationCompleted = LocalStorageService.read(Constants.InitCompletedKey);
+        if (initializationCompleted) {
+          $state.go('list');
+        } else {
+          $state.go('login');
+        }
+      }, false);
     });

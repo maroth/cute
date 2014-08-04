@@ -5,6 +5,7 @@
     return {
       AccessTokenKey: 'fbtoken',
       FriendCacheKey: 'friendCache',
+      InitCompletedKey: 'initCompleted',
       FacebookPermissions: 'user_friends',
       MessageGcmReceived: 'GcmNotification',
       MessageHeartMatch: 'HeartMatch',
