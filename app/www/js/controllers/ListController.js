@@ -7,7 +7,7 @@
       FriendService.all().then(function(friends) {
         $scope.friends = friends;
         updateHeartState();
-      }, function(failed) {}, function(update) {
+      }, function (failed) { }, function (update) {
         $scope.friends = update;
         updateHeartState();
       });

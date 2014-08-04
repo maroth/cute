@@ -1,6 +1,6 @@
 angular.module('cute', ['ionic', 'cute.services', 'cute.controllers', 'cute.exceptionHandler'])
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function ($stateProvider, $urlRouterProvider) {
 
   $stateProvider
 
@@ -31,9 +31,5 @@ angular.module('cute', ['ionic', 'cute.services', 'cute.controllers', 'cute.exce
   $urlRouterProvider.otherwise('/init');
 
 });
-
-function onNotificationGCM(e) {
-  angular.element(document.body).injector().get('$rootScope').$broadcast('GcmNotification', { message: e });
-}
 
 
