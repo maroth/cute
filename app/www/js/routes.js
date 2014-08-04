@@ -16,7 +16,7 @@ angular.module('cute', ['ionic', 'cute.services', 'cute.controllers', 'cute.exce
     })
 
     .state('match', {
-      url: '/match/:matchId',
+      url: '/match/',
       templateUrl: 'templates/match.html',
       controller: 'matchController',
     })

@@ -8,3 +8,4 @@ platforms/^.*
 bin
 obj
 *.user
+app/www/mongoose-free-5.3.5.exe

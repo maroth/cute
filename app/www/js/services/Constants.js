@@ -8,9 +8,9 @@
       FacebookPermissions: 'user_friends',
       MessageGcmReceived: 'GcmNotification',
       MessageHeartMatch: 'HeartMatch',
-      HeartMatchDuration: millisecondsPerMinute * 0.05, //10 minutes
+      HeartMatchDuration: millisecondsPerMinute * 10,
       FriendListRefreshInterval: millisecondsPerMinute * 3,
       HeartStateUpdateInterval: millisecondsPerSecond * 1,
-      MatchScreenDuration: millisecondsPerSecond * 60, //10 seconds
+      MatchScreenDuration: millisecondsPerSecond * 10, 
     };
   });

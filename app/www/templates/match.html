@@ -15,8 +15,8 @@
             </tr>
         </table>
         <p>
-            <img class="match-image" ng-src="{{ picture }}" />
+            <img class="match-image" ng-src="{{ $parent.personInfo.picture.data.url }}" />
         </p>
-        <h1 class="match-name">{{ name }}</h1>
+        <h1 class="match-name">{{ $parent.personInfo.name }}</h1>
     </ion-content>
 </ion-view>
