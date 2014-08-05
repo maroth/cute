@@ -1,26 +1,23 @@
 ﻿angular.module('cute.services')
-  .factory('MobileServiceClientService', function ($q, Secrets, FacebookService) {
+  .factory('MobileServiceClientService', function ($q, Constants, Secrets, FacebookService) {
+
     var mobileServiceClient = new WindowsAzure.MobileServiceClient(
       Secrets.MobileServiceUrl,
       Secrets.MobileServiceAppKey
     );
 
-    var getFriendsUsingCute = function() {
+    return {
+      getFriendsUsingCute: getFriendsUsingCute,
+    };
+
+    function getFriendsUsingCute() {
       var deferred = $q.defer();
 
-      var apiCallSuccess = function(result) {
-        var friends = JSON.parse(result.response).friends;
-        angular.forEach(friends, function(value) {
-          value.heartState = 'none';
-        });
-        deferred.resolve(friends);
-      };
+      FacebookService.getValidatedAccessToken().then(invokeApi);
 
-      var apiCallError = function(error) {
-        deferred.reject(error.message);
-      };
+      return deferred.promise;
 
-      FacebookService.getValidatedAccessToken().then(function(token) {
+      function invokeApi(token) {
         var apiCallParams = {
           body: null,
           method: 'get',
@@ -31,13 +28,18 @@
 
         mobileServiceClient.invokeApi('getfriendsusingcute', apiCallParams)
           .done(apiCallSuccess, apiCallError);
-      });
+      }
 
-      return deferred.promise;
-    };
+      function apiCallSuccess(result) {
+        var friends = JSON.parse(result.response).friends;
+        angular.forEach(friends, function (value) {
+          value.heartState = Constants.HeartState.NONE;
+        });
+        deferred.resolve(friends);
+      }
 
-    return {
-      getFriendsUsingCute: getFriendsUsingCute,
-      mobileServiceClient: mobileServiceClient,
-    };
+      function apiCallError(error) {
+        deferred.reject(error.message);
+      }
+    }
   });

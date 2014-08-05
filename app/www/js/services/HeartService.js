@@ -1,6 +1,6 @@
 ﻿angular.module('cute.services')
-  .factory('HeartService', function($resource, Secrets) {
-    return $resource('https://cute.azure-mobile.net/tables/heart', {}, {
+  .factory('HeartService', function ($resource, Secrets) {
+    var options = {
       post: {
         method: 'POST',
         headers: {
@@ -8,5 +8,8 @@
           'Content-Type': 'Application/json'
         }
       }
-    });
+    };
+
+    var heartResource = $resource('https://cute.azure-mobile.net/tables/heart', {}, options);
+    return heartResource;
   });

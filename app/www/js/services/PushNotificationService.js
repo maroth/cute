@@ -1,29 +1,27 @@
 ﻿angular.module('cute.services')
   .factory('PushNotificationService', function ($rootScope, $timeout, Constants, Secrets, FacebookService) {
 
-    var handleRegisteredMessage = function (message) {
-
-      var tryAgainLater = function () {
-        $timeout(function () {
-          handleRegisteredMessage(message);
-        }, Constants.MillisecondsPerMinute);
-      };
-
-      if (message.regid.length > 0) {
-        FacebookService.getOwnId().then(function (myFacebookId) {
-          var mobileClient = new WindowsAzure.MobileServiceClient(Secrets.MobileServiceUrl, Secrets.MobileServiceAppKey);
-          var hub = new NotificationHub(mobileClient);
-          var receivingTags = [myFacebookId];
-          var templateName = 'myTemplate';
-          var template = '{ "data": {"message": "$(message)", "matchId": "$(matchId)"}}';
-          hub.gcm.register(message.regid, receivingTags, templateName, template)
-            .done(function () { })
-            .fail(tryAgainLater);
-        }, tryAgainLater);
-      }
+    return {
+      register: register,
+      onGcmNotification: handleGcmNotification,
     };
 
-    var handleGcmNotification = function (data) {
+    function register() {
+      window.onNotificationGCM = function (message) {
+        angular.element(document.body).injector().get('$rootScope').$broadcast(Constants.MessageGcmReceived, { message: message });
+      }
+
+      window.plugins.pushNotification.register(function () {
+        //alert('registered');
+      }, function (f) {
+        alert(f);
+      }, {
+        "senderID": Secrets.GoogleCloudMessagingSenderId,
+        "ecb": "onNotificationGCM",
+      });
+    }
+
+    function handleGcmNotification(data) {
       var message = data.message;
       switch (message.event) {
         case 'registered':
@@ -42,26 +40,31 @@
           alert('An unknown GCM event has occurred');
           break;
       }
-    };
+    }
 
-    var register = function () {
+    function handleRegisteredMessage(message) {
 
-      window.onNotificationGCM = function (e) {
-        angular.element(document.body).injector().get('$rootScope').$broadcast(Constants.MessageGcmReceived, { message: e });
+      if (message.regid.length > 0) {
+        FacebookService.getOwnId().then(handleMessage, tryAgainLater);
       }
 
-      window.plugins.pushNotification.register(function () {
-        //alert('registered');
-      }, function (f) {
-        alert(f);
-      }, {
-        "senderID": Secrets.GoogleCloudMessagingSenderId,
-        "ecb": "onNotificationGCM",
-      });
-    };
+      function handleMessage(myFacebookId) {
+        var mobileClient = new WindowsAzure.MobileServiceClient(Secrets.MobileServiceUrl, Secrets.MobileServiceAppKey);
+        var hub = new NotificationHub(mobileClient);
+        var receivingTags = [myFacebookId];
+        var templateName = 'myTemplate';
+        var template = '{ "data": {"message": "$(message)", "matchId": "$(matchId)"}}';
+        hub.gcm.register(message.regid, receivingTags, templateName, template)
+          .done(function () { })
+          .fail(tryAgainLater);
+      }
 
-    return {
-      register: register,
-      onGcmNotification: handleGcmNotification,
-    };
+      function tryAgainLater() {
+        $timeout(handleMessage, Constants.MillisecondsPerMinute);
+
+        function handleMessage() {
+          handleRegisteredMessage(message);
+        }
+      };
+    }
   });

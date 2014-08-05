@@ -1,16 +1,20 @@
 ﻿angular.module('cute.services')
-  .factory('LocalStorageService', function() {
+  .factory('LocalStorageService', function () {
     return {
-      read: function(key) {
-        return window.localStorage[key];
-      },
-
-      write: function(key, value) {
-        window.localStorage[key] = value;
-      },
-
-      delete: function(key) {
-        window.localStorage.removeItem(key);
-      },
+      read: read,
+      write: write,
+      delete: remove,
     };
+
+    function read(key) {
+      return window.localStorage[key];
+    }
+
+    function write(key, value) {
+      window.localStorage[key] = value;
+    }
+
+    function remove(key) {
+      window.localStorage.removeItem(key);
+    }
   });
